@@ -6,3 +6,31 @@
 
 # Ako potom program vypnete?
 # Ostava ako uloha pre pozornych citatelov
+
+
+
+
+
+
+import time
+
+i = 0
+stop_attempts = 0  # Počet pokusů o zastavení
+
+while True:
+    try:
+        print(f'Python {i} initiated...')
+        i += 1
+        time.sleep(1)
+    except KeyboardInterrupt:
+        if stop_attempts == 0:
+            print('You cannot stop me that easily!')
+            stop_attempts += 1
+        else:
+            print('Alright, you win. Stopping the program.')
+            break
+
+print('Program has ended.')
+
+
+
