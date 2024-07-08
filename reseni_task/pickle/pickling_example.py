@@ -8,7 +8,7 @@ class MojeTrida:
 
 instance = MojeTrida('Priklad', 123)
 
-# Serializace (pickling) instance třídy do souboru
+
 with open('moje_trida.pkl', 'wb') as f:
     pickle.dump(instance, f)
 
