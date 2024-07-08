@@ -11,26 +11,19 @@ class Movie:
     year: int
 
 
+def sort_movies_by(movies: List[Movie], attribute: str, reverse: bool = False) -> List[Movie]:
 
-def filter_movies(movies: List[Movie], genre: str) -> List[Movie]:
-
-    filtered_movies = []
-
-
-    for movie in movies:
-        if movie.genre == genre:
-            filtered_movies.append(movie)
+    if attribute not in ['movie_id', 'title', 'genre', 'rating', 'year']:
+        raise ValueError(f"Neplatný atribut '{attribute}' pro řazení.")
 
 
-    return filtered_movies
+    def get_attribute_value(movie):
+        return getattr(movie, attribute)
 
 
+    sorted_movies = sorted(movies, key=get_attribute_value, reverse=reverse)
 
-def get_unique_genres(movies: List[Movie]) -> List[str]:
-    genres = set()
-    for movie in movies:
-        genres.add(movie.genre)
-    return list(genres)
+    return sorted_movies
 
 
 
@@ -46,24 +39,15 @@ if __name__ == "__main__":
     ]
 
 
-    genres = get_unique_genres(movies)
+    sorted_movies_by_title = sort_movies_by(movies, 'title')
+    print("Filmy seřazené podle názvu vzestupně:")
+    for movie in sorted_movies_by_title:
+        print(f"{movie.title} ({movie.year}) - Hodnocení: {movie.rating}")
+
+    print()
 
 
-    print("Dostupné žánry:")
-    for index, genre in enumerate(genres, start=1):
-        print(f"{index}. {genre}")
-
-
-    selected_genre_index = int(input("Zadej číslo žánru, který chceš zobrazit: "))
-
-
-    if selected_genre_index < 1 or selected_genre_index > len(genres):
-        print("Neplatná volba žánru.")
-    else:
-        selected_genre = genres[selected_genre_index - 1]
-        filtered_movies = filter_movies(movies, selected_genre)
-
-        # Vypis filtrovanych filmu
-        print(f"\nFilmy žánru '{selected_genre}':")
-        for movie in filtered_movies:
-            print(f"{movie.title} ({movie.year}), Hodnocení: {movie.rating}")
+    sorted_movies_by_rating = sort_movies_by(movies, 'rating', reverse=True)
+    print("Filmy seřazené podle hodnocení sestupně:")
+    for movie in sorted_movies_by_rating:
+        print(f"{movie.title} ({movie.year}) - Hodnocení: {movie.rating}")
