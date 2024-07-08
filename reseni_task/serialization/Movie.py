@@ -1,6 +1,6 @@
+import csv
 from dataclasses import dataclass
 from typing import List
-
 
 @dataclass
 class Movie:
@@ -10,33 +10,35 @@ class Movie:
     rating: float
     year: int
 
+def read_movies_csv(file_name: str) -> List[Movie]:
+    movies = []
+    with open(file_name, newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        next(reader)  # Skip header row
+        for row in reader:
+            movie_id = int(row[0])
+            title = row[1]
+            genre = row[2]
+            rating = float(row[3])
+            year = int(row[4])
+            movie = Movie(movie_id, title, genre, rating, year)
+            movies.append(movie)
+    return movies
 
 def sort_movies_by(movies: List[Movie], attribute: str, reverse: bool = False) -> List[Movie]:
-
     if attribute not in ['movie_id', 'title', 'genre', 'rating', 'year']:
         raise ValueError(f"Neplatný atribut '{attribute}' pro řazení.")
 
-
     def get_attribute_value(movie):
         return getattr(movie, attribute)
-
 
     sorted_movies = sorted(movies, key=get_attribute_value, reverse=reverse)
 
     return sorted_movies
 
-
-
 if __name__ == "__main__":
 
-    movies = [
-        Movie(1, "The Shawshank Redemption", "Drama", 9.3, 1994),
-        Movie(2, "The Godfather", "Crime", 9.2, 1972),
-        Movie(3, "The Dark Knight", "Action", 9.0, 2008),
-        Movie(4, "Pulp Fiction", "Crime", 8.9, 1994),
-        Movie(5, "Forrest Gump", "Drama", 8.8, 1994),
-        Movie(6, "Inception", "Sci-Fi", 8.8, 2010)
-    ]
+    movies = read_movies_csv('movies.csv')
 
 
     sorted_movies_by_title = sort_movies_by(movies, 'title')
