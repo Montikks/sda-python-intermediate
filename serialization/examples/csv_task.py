@@ -27,8 +27,8 @@ class Movie:
 
 
 def read_movies_csv(file_name):
-    with open(file_name) as in_file:
-        reader = csv.reader(in_file)
+    with open(file_name) as file:
+        reader = csv.reader(file)
         loaded_movies = []
         for row in reader:
             id_, title, genre, rating, year = row
