@@ -29,26 +29,3 @@ def power2_x(x):
 
 
 print(power2_x(10))
-
-import dataclasses
-
-@dataclasses.dataclass(frozen=True)
-class Foo:
-    def sum():
-        pass
-
-
-obj = Foo()
-
-
-# Napis dekorator measure_time, ktory modifikuje funkciu tak,
-# ze sa odstopuje cas, ktory trval pri vykonani funkcie a nasledne sa vypise.
-# odporucam pouzit time.time()
-
-
-@measure_time
-def bad_sum(n):
-    total = 0
-    for i in range(1, n + 1):
-        total += i
-    return total
