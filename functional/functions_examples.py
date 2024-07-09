@@ -48,7 +48,9 @@ print(sorted(array, key=lambda tup: (tup[1], tup[0])))
 
 # Task 1
 # Napiste 1 riadok, ktory najde najvacsiu hodnotu v zozname, kde najvacsia hodnota reprezentuje najdlhsi retazec
-# array = ['banana', 'apple', 'orange', 'pineapple']
+array = ['banana', 'apple', 'orange', 'pineapple']
+print(max(array, key=len))
+
 
 """
 Task 2
@@ -59,3 +61,14 @@ Napis funkciu, ktora na vstupe dostane cele cislo n >= 0 a vrati dictionary, kde
     Hint:
         Pozor, aby kazda funkcia nerobila to iste!
 """
+
+
+def function_factory(n):
+    result_dict = {}
+    for i in range(n):
+        result_dict[i] = lambda x=i: 2 ** x
+    return result_dict
+
+
+for key, func in function_factory(10).items():
+    print(key, func())
