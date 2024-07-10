@@ -44,7 +44,7 @@ if __name__ == '__main__':
     print(premade_sum())  # 30
 
     string_sum = my_partial(default_sum, init='')
-    print(default_sum(['a', 'b', 'c']))  # 'abc'
+    print(string_sum(['a', 'b', 'c']))  # 'abc'
 
     try:
         my_partial(1, 2)
