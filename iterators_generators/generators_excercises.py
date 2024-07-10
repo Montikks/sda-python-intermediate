@@ -6,6 +6,7 @@
 
 # Task 3
 # Napis generator `fib()`, ktory bude donekonecna generovat cisla fibonnaciho postupnosti
+# 0 1 1 2 3 5 8 13...
 
 # Task 4
 # Napis generator `read_file(file_name)`, ktory otvori subor `file_name` a bude
