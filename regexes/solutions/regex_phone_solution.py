@@ -7,7 +7,8 @@ import re
 # moze nasledovat iba prave 9 cislic
 
 def find_phone_numbers(string):
-    return re.findall(r'(\+420\d{9})\D', string)
+    for obj in re.finditer(r'(\+|00)420\d{9}\D', string):
+        yield obj.group()[:-1]
 
 
 if __name__ == "__main__":
@@ -16,5 +17,6 @@ if __name__ == "__main__":
     +421123456789
     +123456789000 bbb+420111222333
     +4209998887772 <- invalid
+    00420123456789
     """
-    print(find_phone_numbers(text))
+    print(list(find_phone_numbers(text)))

@@ -4,4 +4,5 @@ Pouzi pri tom Pycharm replace with regex.
 Zapis pouzity regex sem do suboru.
 
 Riesenie:
-# TODO
+<(\/?)h1>
+<$1h2>
