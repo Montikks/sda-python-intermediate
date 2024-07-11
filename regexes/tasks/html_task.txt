@@ -1,0 +1,7 @@
+Task
+Uprav website.html v pycharme tak, aby sa vymenili vsetky <h1> elementy za <h2> elementy.
+Pouzi pri tom Pycharm replace with regex.
+Zapis pouzity regex sem do suboru.
+
+Riesenie:
+# TODO
