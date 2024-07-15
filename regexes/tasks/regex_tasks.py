@@ -32,3 +32,9 @@
 # Task 5
 # Napis funkciu, ktora dostane na vstupe string a zisti, ci sa jedna o IPv4 adresu.
 # IPv4 adresa je vo formate {cislo v rozmedzi 0-255}.{cislo v rozmedzi 0-255}.{cislo v rozmedzi 0-255}.{cislo v rozmedzi 0-255}
+
+
+# Task 6
+# Napis funkciu, ktora dostane ako parameter string obsahujuci hashtagy z tweetu a vrati ich zoznam.
+# Priklad:
+# "Love the new features in #Python3! #coding #developer #regex"
