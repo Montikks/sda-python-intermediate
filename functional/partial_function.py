@@ -5,6 +5,17 @@ from functools import wraps
 # pri dalsom volani berie uz iba zvysne (nie nutne berie dalsie parametre)
 
 
+def my_partial(func, *args, **kwargs):
+    if not callable(func):
+        raise TypeError(f'First parameter of `my_partial` must be callable. {func} is not.')
+
+    @wraps(func)
+    def wrapper(*new_args, **new_kwargs):
+        return func(*args, *new_args, **kwargs, **new_kwargs)
+
+    return wrapper
+
+
 def int_sum(a, b):
     return a + b
 
@@ -33,7 +44,7 @@ if __name__ == '__main__':
     print(premade_sum())  # 30
 
     string_sum = my_partial(default_sum, init='')
-    print(default_sum(['a', 'b', 'c']))  # 'abc'
+    print(string_sum(['a', 'b', 'c']))  # 'abc'
 
     try:
         my_partial(1, 2)
@@ -44,7 +55,7 @@ if __name__ == '__main__':
 
     # Too many arguments before
     try:
-        my_partial(int_sum, 10, 20, 30)
+        my_partial(int_sum, 10, 20, 30)()
     except Exception as e:
         print('ok:', e)
     else:
