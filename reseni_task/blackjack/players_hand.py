@@ -48,6 +48,10 @@ class Player:
     def lose_bet(self):
         self.bet = 0
 
+    def push(self):
+        self.balance += self.bet
+        self.bet = 0
+
 class Dealer(Player):
     def __init__(self):
         super().__init__("Dealer", float('inf'))
